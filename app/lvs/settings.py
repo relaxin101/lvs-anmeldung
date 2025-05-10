@@ -136,6 +136,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'index'
 
+########## EMAIL PROVIDER ##########################
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_HOST = config('EMAIL_HOST', 'smtp.example.com')
@@ -145,3 +146,7 @@ EMAIL_USE_TLS = True
 ########### EMAIL CREDENTIALS ######################
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', 'text@example.com')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', 'password')
+
+########## USER MODEL ##############################
+AUTHENTICATION_BACKENDS = ['anmeldung.backends.EmailBackend']
+AUTH_USER_MODEL = "anmeldung.User"

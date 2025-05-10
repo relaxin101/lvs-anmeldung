@@ -21,11 +21,11 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
+            firstname = form.cleaned_data.get('firstname')
             ######################### mail system ####################################
             htmly = get_template('anmeldung/Email.html')
-            d = { 'username': username }
+            d = { 'firstname':  firstname}
             subject, from_email, to = 'welcome', EMAIL_HOST_USER, email
             html_content = htmly.render(d)
             msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
