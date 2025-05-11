@@ -8,4 +8,10 @@ from django.utils.translation import gettext_lazy as _
 class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'phone_no', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'birthdate', 'email', 'phone_no', 'schulung', 'couleurname', 'verbindung',
+                  'reception', 'burschung', 'chargen', 'password1', 'password2', ]
+        widgets = {
+            'birthdate': forms.DateInput(attrs={'type': 'date'}),
+            'reception': forms.DateInput(attrs={'type': 'date'}),
+            'burschung': forms.DateInput(attrs={'type': 'date'}),
+        }
