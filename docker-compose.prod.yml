@@ -1,0 +1,23 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_prod
+    command: >
+      sh -c "
+        python manage.py migrate &&
+        python ../create_superuser.py &&
+        gunicorn app.wsgi:application --bind 0.0.0.0:8000"
+    env_file:
+      - .env.prod
+    volumes:
+      - ./app:/code/app
+      - ./db_data:/code/db_data
+      - static_volume:/code/static
+    ports:
+      - "8000:8000"
+    working_dir: /code/app
+
+volumes:
+  db_data:
+  static_volume:
